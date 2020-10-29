@@ -1,6 +1,6 @@
 #### JSend
 
-All AllMyWishrs services implement [the JSend specification](https://github.com/omniti-labs/jsend) for serving API responses. In a nutshell, this middleware attaches a JSend object to each request with `success` and `error` methods that can then be invoked later on. This means our responses usually follow the same general formats.
+All AllMyWishes services implement [the JSend specification](https://github.com/omniti-labs/jsend) for serving API responses. In a nutshell, this middleware attaches a JSend object to each request with `success` and `error` methods that can then be invoked later on. This means our responses usually follow the same general formats.
 
 _Successes_
 
@@ -14,13 +14,12 @@ _Successes_
 ```
 
 _Errors_ 
-> Note: Please send useful error messages not an error occured. Dont let thunder strike you!
+> Note: Please send useful error messages not an error occured. Dont let ***THUNDER*** strike you!
 ```json
 {
   "status" : "error",
   "message" : "relevant message about the error here",
   "code" : "error code, often just the http status code",
-  "error_code": "3-digit-internal-error-code",
   "data" : {
     "any other relevant info about the error here i.e. conditions, stack traces etc" : ""
   }
