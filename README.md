@@ -1,6 +1,6 @@
 #### JSend
 
-All GoMoney services implement [the JSend specification](https://github.com/omniti-labs/jsend) for serving API responses. In a nutshell, this middleware attaches a JSend object to each request with `success`, `fail`, and `error` methods that can then be invoked later on. This means our responses usually follow the same general formats.
+All AllMyWishrs services implement [the JSend specification](https://github.com/omniti-labs/jsend) for serving API responses. In a nutshell, this middleware attaches a JSend object to each request with `success` and `error` methods that can then be invoked later on. This means our responses usually follow the same general formats.
 
 _Successes_
 
@@ -13,23 +13,12 @@ _Successes_
 }
 ```
 
-_Fails_ - (note: we don't really ever use this)
-
-```json
-{
-  "status" : "fail",
-  "data" : {
-    "relevant info of why the API call failed" : ""
-  }
-}
-```
-
 _Errors_ 
 
 ```json
 {
   "status" : "error",
-  "message" : "relevant message about the erorr here",
+  "message" : "relevant message about the error here", //Please send useful error messages not an error occured. Dont let thunder strike you
   "code" : "error code, often just the http status code",
   "error_code": "3-digit-internal-error-code",
   "data" : {
@@ -46,7 +35,19 @@ The `data` key - is where you want to look at for the result of your request. It
 
 The `code` key - This key is only available in the event of an error. This simply mirrors whatever HTTP status code accompanied the request as another added convenience. This code could also just be read from the request itself.
 
-The `error_code` key - This key is only available in the event of an error. This is a 3 digit internal error code mapped to *exact internal errors*. This is usually an int from `100` - `999`. An `InsufficientFundsError` could be maped to `303` and when the client sees a `error_code` that's `303` it can display an exact screen or message.
+Also ensure you attach the proper http response codes
+
+```
+_Common Codes_
+SERVER_ERROR: 500
+CONFLICT: 409
+NOT_FOUND: 404
+BAD_REQUEST: 400
+SUCCESS: 200
+CREATED: 201
+UNAUTHORIZED: 401
+```
+
 
 > Note: because we follow the JSend specification, this means the content type for responses will always be `application/json`!
 
