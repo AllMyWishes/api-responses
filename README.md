@@ -14,11 +14,11 @@ _Successes_
 ```
 
 _Errors_ 
-
+> Note: Please send useful error messages not an error occured. Dont let thunder strike you!
 ```json
 {
   "status" : "error",
-  "message" : "relevant message about the error here", //Please send useful error messages not an error occured. Dont let thunder strike you
+  "message" : "relevant message about the error here",
   "code" : "error code, often just the http status code",
   "error_code": "3-digit-internal-error-code",
   "data" : {
@@ -36,9 +36,8 @@ The `data` key - is where you want to look at for the result of your request. It
 The `code` key - This key is only available in the event of an error. This simply mirrors whatever HTTP status code accompanied the request as another added convenience. This code could also just be read from the request itself.
 
 Also ensure you attach the proper http response codes
-
+> Common Codes
 ```
-_Common Codes_
 SERVER_ERROR: 500
 CONFLICT: 409
 NOT_FOUND: 404
@@ -48,7 +47,5 @@ CREATED: 201
 UNAUTHORIZED: 401
 ```
 
-
-> Note: because we follow the JSend specification, this means the content type for responses will always be `application/json`!
 
 
